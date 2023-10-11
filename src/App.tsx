@@ -1,7 +1,7 @@
-import { useState } from "react";
-import "./App.css";
-import Form from "./components/Form";
-import Header from "./components/Header";
+import { useState } from 'react';
+import './App.css';
+import Form from './components/Form';
+import Header from './components/Header';
 
 type FormData = {
   name: string;
@@ -52,27 +52,27 @@ function App() {
           <input
             id="showPassword"
             type="checkbox"
-            checked={showPasswords}
-            onChange={toggleShowPasswords}
+            checked={ showPasswords }
+            onChange={ toggleShowPasswords }
           />
-          <button onClick={clickShowHandler}>Cadastrar nova senha</button>
+          <button onClick={ clickShowHandler }>Cadastrar nova senha</button>
         </div>
       )}
-      <button onClick={clickHideHandler}>Cancelar</button>
-      {showForm && <Form addItems={addItems} />}
+      <button onClick={ clickHideHandler }>Cancelar</button>
+      {showForm && <Form addItems={ addItems } />}
       {list.length > 0 ? (
         list.map((item) => (
-          <div key={item.id}>
-            <a href={item.url}>{item.name}</a>
+          <div key={ item.id }>
+            <a href={ item.url }>{item.name}</a>
             <p>{item.login}</p>
             {!showPasswords ? (
               <p>{item.password}</p>
             ) : (
-              <p>{"*".repeat(item.password.length)}</p>
+              <p>{'*'.repeat(item.password.length)}</p>
             )}
             <button
               data-testid="remove-btn"
-              onClick={() => deleteItem(item.id)}
+              onClick={ () => deleteItem(item.id) }
             >
               Apagar
             </button>

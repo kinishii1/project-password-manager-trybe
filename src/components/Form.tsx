@@ -13,7 +13,7 @@ type FormProps = {
   addItems: (item: FormData) => void;
 };
 
-function Form({ addItems }: { addItems: FormProps }) {
+function Form({ addItems }: FormProps) {
   const [isFormComplete, setIsFormComplete] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState({
     min: false,
@@ -22,10 +22,10 @@ function Form({ addItems }: { addItems: FormProps }) {
     specialCharacter: false,
   });
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    login: "",
-    password: "",
-    url: "",
+    name: '',
+    login: '',
+    password: '',
+    url: '',
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -33,9 +33,10 @@ function Form({ addItems }: { addItems: FormProps }) {
   const changeHandler = (value: string, id: string) => {
     setFormData({ ...formData, [id]: value });
 
-    const isComplete = Object.values(formData).every((item) => item !== "");
+    const isComplete = Object.values(formData).every((item) => item !== '');
     const isPasswordValid = Object.values(passwordCheck).every(
-      (item) => item === true);
+      (item) => item === true,
+    );
     if (
       isComplete && isPasswordValid
     ) {
@@ -61,7 +62,6 @@ function Form({ addItems }: { addItems: FormProps }) {
 
     const item = { ...formData, id };
     console.log(item);
-    addItems(item);
 
     Swal.fire({
       title: 'Serviço cadastrado com sucesso',
@@ -70,10 +70,10 @@ function Form({ addItems }: { addItems: FormProps }) {
     });
 
     setFormData({
-      name: "",
-      login: "",
-      password: "",
-      url: "",
+      name: '',
+      login: '',
+      password: '',
+      url: '',
     });
 
     setIsFormComplete(false);
@@ -83,14 +83,17 @@ function Form({ addItems }: { addItems: FormProps }) {
     setShowPassword((prevState) => !prevState);
   };
 
+  const validClass = 'valid-password-check';
+  const invalidClass = 'invalid-password-check';
+
   return (
     <>
       <div>
         <p
           className={
             passwordCheck.min
-              ? "valid-password-check"
-              : "invalid-password-check"
+              ? validClass
+              : invalidClass
           }
         >
           Possuir 8 ou mais caracteres
@@ -98,8 +101,8 @@ function Form({ addItems }: { addItems: FormProps }) {
         <p
           className={
             passwordCheck.max
-              ? "valid-password-check"
-              : "invalid-password-check"
+              ? validClass
+              : invalidClass
           }
         >
           Possuir até 16 caracteres
@@ -107,8 +110,8 @@ function Form({ addItems }: { addItems: FormProps }) {
         <p
           className={
             passwordCheck.numberAndLetter
-              ? "valid-password-check"
-              : "invalid-password-check"
+              ? validClass
+              : invalidClass
           }
         >
           Possuir letras e números
@@ -116,57 +119,61 @@ function Form({ addItems }: { addItems: FormProps }) {
         <p
           className={
             passwordCheck.specialCharacter
-              ? "valid-password-check"
-              : "invalid-password-check"
+              ? validClass
+              : invalidClass
           }
         >
           Possuir algum caractere especial
         </p>
       </div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={ submitHandler }>
         <label htmlFor="name">Nome do serviço</label>
         <input
           required
-          value={formData.name}
+          value={ formData.name }
           id="name"
           type="text"
-          onChange={(e) => changeHandler(e.target.value, e.target.id)}
+          onChange={ (e) => changeHandler(e.target.value, e.target.id) }
         />
 
         <label htmlFor="login">Login</label>
         <input
           required
-          value={formData.login}
+          value={ formData.login }
           id="login"
           type="text"
-          onChange={(e) => changeHandler(e.target.value, e.target.id)}
+          onChange={ (e) => changeHandler(e.target.value, e.target.id) }
         />
 
         <label htmlFor="password">Senha</label>
         <input
           required
-          value={formData.password}
+          value={ formData.password }
           id="password"
-          type={showPassword ? "text" : "password"}
-          onChange={(e) => passwordChangeHandler(e.target.value)}
+          type={ showPassword ? 'text' : 'password' }
+          onChange={ (e) => passwordChangeHandler(e.target.value) }
         />
         <button
           data-testid="show-hide-form-password"
           type="button"
-          onClick={toggleShowPassword}
+          onClick={ toggleShowPassword }
         >
-          {showPassword ? "Esconder" : "Mostrar"}
+          {showPassword ? 'Esconder' : 'Mostrar'}
         </button>
 
         <label htmlFor="url">URL</label>
         <input
           required
-          value={formData.url}
+          value={ formData.url }
           id="url"
           type="text"
-          onChange={(e) => changeHandler(e.target.value, e.target.id)}
+          onChange={ (e) => changeHandler(e.target.value, e.target.id) }
         />
-        <button disabled={!isFormComplete} type="submit">
+        <button
+          disabled={ !isFormComplete }
+          type="submit"
+          onClick={ () => addItems(formData) }
+        >
           Cadastrar
         </button>
       </form>

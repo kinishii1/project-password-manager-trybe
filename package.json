@@ -17,7 +17,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "lint:styles": "npx stylelint '**/*.css'",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .ts,.tsx"
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .ts,.tsx --fix"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.20.0",
