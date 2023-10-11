@@ -40,7 +40,7 @@ function App() {
     setShowButton(true);
   };
 
-  const deleteItem = (id: number) => {
+  const deleteItem = (id: number | string | undefined) => {
     console.log(id);
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
