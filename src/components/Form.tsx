@@ -58,10 +58,7 @@ function Form({ addItems }: FormProps) {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const id = Math.random();
-
-    const item = { ...formData, id };
-    console.log(item);
+    console.log(formData);
 
     Swal.fire({
       title: 'Serviço cadastrado com sucesso',

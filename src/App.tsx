@@ -22,7 +22,9 @@ function App() {
   };
 
   const addItems = (item: FormData) => {
-    setList([...list, item]);
+    const id = Math.random();
+    const itemWithId = { ...item, id };
+    setList([...list, itemWithId]);
     setShowForm(false);
     setShowButton(true);
     console.log(list);
@@ -38,7 +40,8 @@ function App() {
     setShowButton(true);
   };
 
-  const deleteItem = (id: number | undefined) => {
+  const deleteItem = (id: number) => {
+    console.log(id);
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
   };
