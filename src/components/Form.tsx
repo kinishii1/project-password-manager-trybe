@@ -27,7 +27,6 @@ function Form({ addItems }: FormProps) {
     password: '',
     url: '',
   });
-
   const [showPassword, setShowPassword] = useState(false);
 
   const changeHandler = (value: string, id: string) => {
